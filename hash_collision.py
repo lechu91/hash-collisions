@@ -5,6 +5,7 @@ import string
 
 
 def hash_collision(k):
+    print("test")
     if not isinstance(k, int):
         print("hash_collision expects an integer")
         return b'\x00', b'\x00'

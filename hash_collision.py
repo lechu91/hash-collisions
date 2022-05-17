@@ -14,15 +14,17 @@ def hash_collision(k):
 
     # Collision finding code goes here
 
+    mask = int(''.join(['0' for i in range(256 - k)] + ['1' for i in range(k)]), 2)
+
     letters = string.ascii_letters
     x = (''.join(random.choice(letters) for i in range(random.randint(1, 10)))).encode('utf-8')
     hash_x = hashlib.sha256(x).hexdigest()
-    comp_x = hash_x[-k:]
+    comp_x = int(hash_x, 16) & mask
 
     while True:
         y = (''.join(random.choice(letters) for i in range(random.randint(1, 10)))).encode('utf-8')
         hash_y = hashlib.sha256(y).hexdigest()
-        comp_y = hash_y[-k:]
+        comp_y = int(hash_y, 16) & mask
         if comp_x == comp_y and x != y:
             break
 

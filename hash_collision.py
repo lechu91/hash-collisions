@@ -21,12 +21,7 @@ def hash_collision(k):
     while True:
         y = (''.join(random.choice(letters) for i in range(random.randint(1, 10)))).encode('utf-8')
         hash_y = hashlib.sha256(y).hexdigest()
-
         if hash_x[-k:] == hash_y[-k:] and x != y:
-            print(x)
-            print(hash_x)
-            print(y)
-            print(hash_y)
             break
 
     return x, y
